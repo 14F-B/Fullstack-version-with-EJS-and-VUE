@@ -129,7 +129,7 @@ function applyToLocation(locationId,userId,eventId,userAge,eventAge,email) {
                 <h4>Adatok a foglalással kapcsolatban:</h4><br><br>
                 
                 <b>Esemény neve:</b> ${queryResults[0].name}<br>
-                <b>Helyszín:</b>  ${queryResults[0].city +", " +queryResults[0].street +" " +queryResults[0].house_number +"."}<br>
+                <b>Helyszín:</b> ${queryResults[0].city}, ${queryResults[0].street}${queryResults[0].house_number ? ` ${queryResults[0].house_number}.` : ''}<br>
                 <b>Időpont:</b> ${formattedDate}<br><br>
                 <img src="cid:qrcode" /><br>
                 <b>Belépéshez szükséges kód:</b> ${Pass_Code}<br> 
@@ -209,7 +209,7 @@ function cancelApplication(locationId, userId, eventId, email) {
                   path: './public/pictures/logo.png', 
                   cid: 'logo' 
                  }],
-                html: `<img style="width:130px; height:90px;" src="cid:logo" /><br>Ön visszamondta a(z) <b>${queryResults[0].name}</b> eseményt,<br>
+                html: `<img style="width:190px; height:33px;" src="cid:logo" /><br>Ön visszamondta a(z) <b>${queryResults[0].name}</b> eseményt,<br>
                 így töröltük részvételi igényét a rendszerünkből.<br><br>
 
 

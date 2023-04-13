@@ -13,7 +13,7 @@
             <label for="tab-addevent" class="table d-none"></label>
                 <div  class=" tabs-content">
                     <span>Új jelszó beállítása</span>
-                        <form @submit.prevent="submitForm">
+                        <form @submit.prevent="refreshpassword">
                           <input type="password" v-model="password_old" placeholder="Add meg a jelenlegi jelszót!" required>
                           <input type="password" v-model="password_new" placeholder="Add meg az új jelszót!" required>
                           <input type="password" v-model="password_new_match" placeholder="Add meg az új jelszót!" required>
@@ -44,24 +44,21 @@ export default {
 },
 
   methods: {
-    submitForm() {
-      axios.put('/refreshPassword', {
-        id:this.getID,
-        password_old: this.password_old,
-        password_new: this.password_new,
-        password_new_match: this.password_new_match
-      })
-      .then(response => {
-        // Ha a jelszóváltoztatás sikeres volt, akkor valamilyen felugró ablakban
-        // értesíthetjük a felhasználót és/vagy visszairányíthatjuk a felhasználót
-        // a felhasználói oldalra.
-        console.log(response)
-      })
-      .catch(error => {
-        console.log(error);
-      });
-      location.reload();
-    }
+    async refreshpassword() {
+      try {
+        const response = await axios.put('/refreshPassword', {
+          id:this.getID,
+          password_old: this.password_old,
+          password_new: this.password_new,
+          password_new_match: this.password_new_match
+        });
+        console.log(response.data);
+        location.reload();
+
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
   computed: {
     ...mapGetters([

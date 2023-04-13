@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-6">
             <div class="copyright">
-              &copy;<strong><span> GO Event! </span></strong> All Rights Reserved
+              &copy;<strong><span> GO EVENT! </span></strong> All Rights Reserved
             </div>
             <div class="credits">
               Olvassa el <a href="/adatvedelem">adatvédelmi tájékoztatónkat</a>
