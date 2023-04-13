@@ -1,6 +1,6 @@
 # Fullstack-version-with-EJS-and-VUE
-[Backend server: ](http:localhost:5172)
-[Frontend server: ](http:localhost:5173)
+[Backend localhost server ](http:localhost:5172) 
+[Frontend localhost server ](http:localhost:5173)
 
 
 ## Ismertető - Description
