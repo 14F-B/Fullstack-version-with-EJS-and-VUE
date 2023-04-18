@@ -4,13 +4,12 @@
   <thead>
     <tr class="adminpage-tableheader bg-light">
       <th scope="col">#</th>
-      <th scope="col" class="col-2">Esemény neve</th>
+      <th scope="col" class="col-3">Esemény neve</th>
       <th scope="col" class="col-2">Időpont</th>
       <th scope="col" class="col-3">Helyszín</th>
-      <th scope="col" class="col-1">Max. létszám</th>
-      <th scope="col" class="col-1">Jk. száma</th>
+      <th scope="col" class="col-1">JK. Száma</th>
       <th scope="col" class="col-1">Korhatár</th>
-      <th scope="col" class="col-1">Szerkesztés</th>
+      <th scope="col" class="col-1">Műveletek</th>
     </tr>
   </thead>
   <tbody class="text-white ">
@@ -20,9 +19,16 @@
         <td><%= eventArray[i].name %></td>
         <td><%= (new Date(eventArray[i].date)).toLocaleString('hu-HU', { dateStyle: 'short', timeStyle: 'short' }) %></td></td>
         <td><%= eventArray[i].city %>, <%= eventArray[i].street %> <%= eventArray[i].house_number ? eventArray[i].house_number + '.' : '' %></td>
-        <td><%= eventArray[i].capacity %></td>
-        <td><%= eventArray[i].applied %></td>
-        <td><%= eventArray[i].agelimit %></td>
+        <td>
+          <%= eventArray[i].capacity %> / <%= eventArray[i].applied %>
+          <% if (eventArray[i].capacity > 0 && eventArray[i].applied > 0) { %>
+            <span style="color: yellow; font-size: 11px;">
+              (<%= Math.round((eventArray[i].applied / eventArray[i].capacity) * 100) %>%)
+            </span>
+          <% } %>
+        </td>
+        <td><%= eventArray[i].agelimit > 0 ? eventArray[i].agelimit + '+' : '-' %></td>
+
         <td>
           <div class="d-flex align-items-center">
             <!-- <form method="POST" action="/modify" class="me-2">
