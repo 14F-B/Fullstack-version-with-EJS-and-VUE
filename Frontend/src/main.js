@@ -16,7 +16,6 @@ import "./assets/bootstrap-icons/bootstrap-icons.css";
 
 
 axios.defaults.baseURL = 'http://localhost:5172/docs';
-// axios.defaults.baseURL = 'https://dull-teal-macaw-vest.cyclic.app/docs';
 
 
 const app = createApp(App);

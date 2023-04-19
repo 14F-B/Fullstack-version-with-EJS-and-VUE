@@ -2,7 +2,7 @@
 
     <div id="header" class="fixed-top d-flex align-items-cente">
       <div class="container-fluid container-xl d-flex flex-row">
-        <a href="/" class="logo me-auto me-lg-0"><img id="logo" src="../assets/img/logo.png" alt="" class=""></a>
+        <a href="/" class="logo me-auto me-lg-0"><img id="logo" src="../assets/pictures/logo.png" alt="" class=""></a>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
           <ul>

@@ -1,16 +1,15 @@
 <template>
-    <div class="container" id="eventTable">
+    <div class="container" id="eventTable" style="overflow-y: auto;">
         <table class="table table-bordered" id="tbl_events">
             <thead>
                 <tr class="adminpage-tableheader bg-light">
                     <th scope="col">#</th>
-                    <th scope="col" class="col-2">Esemény neve</th>
+                    <th scope="col" class="col-3">Esemény neve</th>
                     <th scope="col" class="col-2">Időpont</th>
                     <th scope="col" class="col-3">Helyszín</th>
-                    <th scope="col" class="col-1">Max. létszám</th>
-                    <th scope="col" class="col-1">Jk. száma</th>
+                    <th scope="col" class="col-1">JK. Száma</th>
                     <th scope="col" class="col-1">Korhatár</th>
-                    <th scope="col" class="col-1">Szerkesztés</th>
+                    <th scope="col" class="col-1">Műveletek</th>
                 </tr>
             </thead>
             <tbody class="text-white ">
@@ -19,9 +18,13 @@
                     <td>{{ event.name }}</td>
                     <td>{{ new Date(event.date).toLocaleString('hu-HU', { dateStyle: 'short', timeStyle: 'short' }) }}</td>
                     <td>{{ event.city }}, {{ event.street }} {{ event.house_number ? event.house_number + '.' : '' }}</td>
-                    <td>{{ event.capacity }}</td>
-                    <td>{{ event.applied }}</td>
-                    <td>{{ event.agelimit }}</td>
+                    <td>
+                      {{ event.capacity }} / {{ event.applied }}
+                      <span class="appliedpercent" v-if="event.capacity > 0 && event.applied > 0">
+                        ({{ Math.round((event.applied / event.capacity) * 100) }}%)
+                      </span>
+                    </td>                    
+                    <td>{{ event.agelimit > 0 ? event.agelimit + '+' : '-' }}</td>
                     <td><div class="d-flex align-items-center">
 
                         <!-- <form @submit.prevent="modifyEvent(index)" class="me-2">
@@ -31,7 +34,7 @@
                           </button>
                         </form> -->
       
-                        <form @submit.prevent="deleteEvent(event.id)">
+                        <form @submit.prevent="deleteEvent(event.id,event.name)">
                           <button type="submit" class="btn bg-transparent btn-sm" @click="confirmDelete(event.name)">
                             <i class="bi bi-trash3-fill p-2 text-danger"></i>
                           </button>
@@ -45,7 +48,7 @@
     </div>
 
 <!-- FELHASZNÁLÓK ADATAIT TARTALMAZÓ TÁBLÁZAT -->
-    <div id="usersTable" class="container"  style="display: none;">
+    <div id="usersTable" class="container"  style="display: none; overflow-y: auto;">
       <table class="table table-bordered" id="tbl_users">
         <thead>
           <tr class="adminpage-tableheader bg-light">
@@ -71,7 +74,7 @@
         <td>{{ new Date().getFullYear() - new Date(user.birthdate).getFullYear() }} éves</td>
         <td>{{ user.permission }}</td>
         <td>
-          <form @submit.prevent="deleteUser(user.id)">
+          <form @submit.prevent="deleteUser(user.id,user.name)">
             <button type="submit" class="btn bg-transparent btn-sm" @click="confirmDelete(user.name)">
               <i class="bi bi-person-x p-2 text-danger"></i>
             </button>
@@ -113,7 +116,8 @@ export default {
       });
   },
   methods: {
-  deleteUser(id) {
+  deleteUser(id, username) {
+    if (confirm('Biztosan törölni szeretné a(z)'+ ' "'+ username  +'" ' +'nevű felhasználót?')) {
     axios.delete('/deleteUser/' + id)
       .then(response => {
         // Sikeres törlés esetén a felhasználói tömb frissítése
@@ -123,8 +127,10 @@ export default {
         console.log(error);
       });
       location.reload();
+  }
   },
-  deleteEvent(id) {
+  deleteEvent(id,eventname) {
+    if (confirm('Biztosan törölni szeretné a(z)'+ ' "'+ eventname  +'" ' +' eseményt?')) {
     axios.delete('/deleteEvent/' + id)
       .then(response => {
         // Sikeres törlés esetén a felhasználói tömb frissítése
@@ -134,8 +140,9 @@ export default {
         console.log(error);
       });
       location.reload();
+  }
   },
-},
+}
 };
 
 </script>
@@ -144,6 +151,11 @@ export default {
 #eventTable,
 #usersTable {
   min-height: 100vh;
+}
+
+.appliedpercent{
+  color: yellow; 
+  font-size: 11px;
 }
 
 </style>

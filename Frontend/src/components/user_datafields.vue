@@ -1,10 +1,10 @@
 <template>
               <div class="col col-sm-12 col-md-3 mb-5">
             <div class="m-1 text-start user_datapage" >
-              <img v-if="getPermission === 'admin'" src="../assets/img/profile_admin.png" class="img-fluid m-lg-3  " >
-              <img v-else-if="getPermission === 'user' && getGender === 'Férfi'" src="../assets/img/profile_male.png" class="img-fluid m-lg-3 ">
-              <img v-else-if="getPermission === 'user' && getGender === 'Nő'" src="../assets/img/profile_female.png" class="img-fluid m-lg-3 ">
-              <img v-else-if="getPermission === 'user' && getGender === 'Nem adom meg'" src="../assets/img/profile_gender_neutral.png" class="img-fluid m-lg-3">
+              <img v-if="getPermission === 'admin'" src="../assets/pictures/profile_admin.png" class="img-fluid m-lg-3  " >
+              <img v-else-if="getPermission === 'user' && getGender === 'Férfi'" src="../assets/pictures/profile_male.png" class="img-fluid m-lg-3 ">
+              <img v-else-if="getPermission === 'user' && getGender === 'Nő'" src="../assets/pictures/profile_female.png" class="img-fluid m-lg-3 ">
+              <img v-else-if="getPermission === 'user' && getGender === 'Nem adom meg'" src="../assets/pictures/profile_gender_neutral.png" class="img-fluid m-lg-3">
               <hr>
               <div class="mt-2">Név: <span class=" mt-2">{{ getName }}</span></div>
               <div class="mt-2">E-mail: <span id="email">{{ getEmail }}</span></div>
