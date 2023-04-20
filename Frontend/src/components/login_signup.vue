@@ -14,13 +14,11 @@
                  </label>
                  <div class="tabs">
                     <!--  BEJELENTKEZÉSI RÉSZ  -->
-                    <!-- <div class="border border-danger text-danger p-2">
-                       <i class="bi bi-exclamation-octagon-fill"></i>
-                       <strong>  FIGYELMEZTETŐ SZÖVEG </strong>
-                    </div> -->
+
                     <input class="radio" id="tab-login" name="tabs-name" type="radio" checked>
                     <label for="tab-login" class="table"><span>Bejelentkezés</span></label>
                     <div class="tabs-content">
+                       <div id="errorDiv"></div>
                        <form @submit.prevent="login">
                           <input type="email" v-model="email" placeholder="Email cím" required>
                           <input type="password" v-model="password" placeholder="Jelszó" required>
@@ -91,7 +89,7 @@ export default {
     };
   },
   methods: {
-    async login() {
+async login() {
   try {
     await this.$store.dispatch('login', {
       email: this.email,
@@ -104,6 +102,7 @@ export default {
     });
   } catch (error) {
     console.error(error);
+   
   }
 },
     async signup() {
@@ -121,6 +120,7 @@ export default {
 
       } catch (error) {
         console.error(error);
+        
       }
     },
 

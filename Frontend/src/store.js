@@ -79,7 +79,18 @@ const store = createStore({
         location.reload();
 
       } catch (error) {
-        console.error(error);
+        const errorDiv = document.getElementById('errorDiv'); 
+
+        if (error.response && error.response.status === 401) {
+          errorDiv.innerHTML = '<i class="bi bi-exclamation-octagon-fill"></i>  Hibás felhasználónév vagy jelszó!';
+          errorDiv.classList.add('border', 'border-danger', 'text-danger', 'p-2','col-8','text-start'); 
+
+        } else {
+          errorDiv.innerHTML = '<i class="bi bi-exclamation-octagon-fill"></i>  Hiba történt a bejelentkezés során.';
+          errorDiv.classList.add('border', 'border-warning', 'text-warning', 'p-2','col-8','text-start'); 
+        }
+    
+        errorDiv.classList.add('border', 'border-danger', 'text-danger', 'p-2','col-8','text-start'); 
       }
     },
     logout({ commit }) { // új action
