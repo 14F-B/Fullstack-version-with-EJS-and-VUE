@@ -652,7 +652,6 @@ section {
   font-size: 14px;
   font-weight: 500;
   padding: 0;
-  line-height: 1px;
   margin: 0 0 5px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1641,4 +1640,19 @@ input[type="radio"]:checked::before {
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   filter: invert(1) hue-rotate(180deg);
+}
+
+/* Custom sidebar */
+
+body::-webkit-scrollbar {
+  width: 12px;               
+}
+
+body::-webkit-scrollbar-track {
+  background: #0c0b09        
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #00FFFF;
+  border-radius: 20px;   
 }

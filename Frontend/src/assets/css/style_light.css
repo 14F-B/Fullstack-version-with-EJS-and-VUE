@@ -659,7 +659,6 @@ section {
   font-size: 14px;
   font-weight: 500;
   padding: 0;
-  line-height: 1px;
   margin: 0 0 5px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1620,4 +1619,21 @@ label {
 .eventcard:hover{
   box-shadow: 0 10px 70px rgba(27, 27, 27, 0.7), 0 4px 8px rgba(29, 29, 29, 0.653);
 
+}
+
+
+/* Custom sidebar */
+
+body::-webkit-scrollbar {
+  width: 12px;               
+}
+
+body::-webkit-scrollbar-track {
+  background: #fafafa        
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #121212;
+  border-radius:20px
+    
 }

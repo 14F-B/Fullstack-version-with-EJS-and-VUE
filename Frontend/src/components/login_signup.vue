@@ -14,7 +14,6 @@
                  </label>
                  <div class="tabs">
                     <!--  BEJELENTKEZÉSI RÉSZ  -->
-
                     <input class="radio" id="tab-login" name="tabs-name" type="radio" checked>
                     <label for="tab-login" class="table"><span>Bejelentkezés</span></label>
                     <div class="tabs-content">
