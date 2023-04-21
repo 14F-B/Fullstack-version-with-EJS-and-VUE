@@ -18,7 +18,7 @@
             <div class="countdown d-inline-flex text-center col-12 p-2" :data-count="events.length > 0 ? events[0].date : ''">
             <div class="order-1 countdown-block flex-grow-1"><h3>%d</h3><h4 class="countdown-text">Nap</h4></div>
             <div class="order-2 countdown-block flex-grow-1"><h3>%h</h3><h4 class="countdown-text">Óra</h4></div>
-            <div class="order-3 countdown-block flex-grow-1"><h3>%m</h3><h4 class="countdown-text">Perc</h4></div>
+            <div class="order-3 countdown-block flex-grow-1"><h3>%m</h3><h4 class="countdown-text" >Perc</h4></div>
             <div class="order-4 countdown-block flex-grow-1"><h3>%s</h3><h4 class="countdown-text">MP</h4></div>
           </div>
           <div class="col-sm-4"></div>
@@ -68,3 +68,4 @@ export default {
 
 };
 </script>
+

@@ -19,21 +19,21 @@
   </template>
   
   <script>
-  export default {
-    mounted() {
-      // Google fordító script inicializálása
-      function googleTranslateElementInit2() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'hu',
-          autoDisplay: false
-        }, 'google_translate_element2');
-      }
-  
-      // Google fordító script betöltése
-      const script = document.createElement('script')
-      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
-      document.head.appendChild(script);
-    },
-  };
+    export default {
+      mounted() {
+        // Google fordító script inicializálása
+        function googleTranslateElementInit2() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'hu',
+            autoDisplay: false
+          }, 'google_translate_element2');
+        }
+    
+        // Google fordító script betöltése
+        const script = document.createElement('script')
+        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
+        document.head.appendChild(script);
+      },
+    };
   </script>
   
