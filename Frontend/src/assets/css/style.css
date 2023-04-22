@@ -225,9 +225,7 @@ div.navbar-buttons {
 
 @media (max-width:991px) {
   .mobile-nav-toggle {
-    display: block;
-    right: 2px;
-    text-align: end;
+    display: block
   }
 
   .navbar ul {
@@ -276,7 +274,6 @@ div.navbar-buttons {
 .navbar-mobile .active, .navbar-mobile a:hover, .navbar-mobile li:hover>a {
   color: #0ff
 }
-
 
 @media (max-width:992px) {
   div.navbar-buttons {
@@ -528,19 +525,13 @@ div.navbar-buttons {
   right: 55px
 }
 
-
-
 #welcome-screen .carousel-content {
   background: rgba(4, 4, 4, .7);
   padding: 20px;
   color: #fff;
   border-bottom: 5px solid #0ff
 }
-@media (min-width: 1030px) and (max-width: 1215px) {
-  #welcome-screen .carousel-content {
-    width: 45% !important;
-  }
-}
+
 #welcome-screen .carousel-content h2 {
   color: #fff;
   margin-bottom: 20px;
@@ -1653,4 +1644,15 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #00FFFF;
   border-radius: 20px;   
+}
+
+input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 3px 4px;
+  padding: initial;
+  border: 1px solid #1ceac8; /* Kék színű szegély */
+  border-radius: 0%; /* Szögletes forma */
 }

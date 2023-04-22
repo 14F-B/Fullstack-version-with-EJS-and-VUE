@@ -4,10 +4,13 @@
             <div class="section-title">
               <h2>Inspirálódj eseményeink közül</h2>
               <p>Aktuális programok</p>
+               <label v-for="(item, index) in items" :key="index">
+                <input type="checkbox" v-model="selectedItems" :value="item">{{ item }}
+              </label>
             </div>
             <div class="container-fluid text-dark">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                  <div v-for="event in events" :key="event.id" class="col mb-4">
+                  <div v-for="event in filteredEvents" :key="event.id" class="col mb-4">
                     <div class="card h-100 aos-init aos-animate eventcard" data-aos="fade-down">
                       <img style="height: 200px;" :src="event.url_link" class="card-img-top" alt="...">
                       <div class="card-body" data-aos="fade-up">
@@ -39,6 +42,8 @@ export default {
         return {
             events: [],
             countDownInterval: null,
+            items: ['Zene (koncert)','Film','Sport','Kultúra','Irodalom','Fesztivál,tematikus napok','Konferencia','Egyéb kategória'], 
+            selectedItems: []
         };
     },
     mounted() {
@@ -107,6 +112,15 @@ export default {
     ]),
     isLoggedIn() {
       return this.getEmail !== ''
+    },
+     filteredEvents() {
+      // Szűrjük az eseményeket a kiválasztott kategóriák alapján
+      if (this.selectedItems.length > 0) {
+        return this.events.filter(event => this.selectedItems.includes(event.category));
+      } else {
+        // Ha nincs kiválasztott kategória, akkor az összes eseményt megjelenítjük
+        return this.events;
+      }
     },
   },
 };
