@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "./views/HomeView.vue";
 import AdminView  from "./views/AdminPage.vue"
+import QRCodeReader from "./views/AdminQRscan.vue";
 import UserView  from "./views/UserPage.vue"
 import Adatvedelem from "./views/Adatvedelem.vue"
 import AccessDenied from "./views/AccessDenied.vue"
@@ -22,6 +23,19 @@ const router = createRouter({
       path: '/adminpage',
       name: 'adminpage',
       component: AdminView,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.getPermission === 'admin') {
+          next();
+        } else {
+          next('/accessdenied');
+        }
+      }
+    },
+
+    {
+      path: '/adminpage/scan',
+      name: 'QR Code Reader',
+      component: QRCodeReader,
       beforeEnter: (to, from, next) => {
         if (store.getters.getPermission === 'admin') {
           next();

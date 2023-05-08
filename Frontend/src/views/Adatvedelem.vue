@@ -3,18 +3,18 @@
         <navigationmenu></navigationmenu>
     <main class="pt-5">
         <div class="container">
-          <div class="sppb-addon sppb-addon-text-block 0 pt-5 "><h3 class="sppb-addon-title">Adatvédelmi tájékoztató</h3><div class="sppb-addon-content">Az <strong>M.I. Solution Korlátolt Felelősségű Társaság</strong> (székhely: 2030, Érd, Esztergályos utca 57., cégjegyzékszám: 13-09-185635, adószám: 14821503-2-13), (a továbbiakban: Szolgáltató, adatkezelő) alá veti magát a következő tájékoztatónak.
+          <div class="sppb-addon sppb-addon-text-block 0 pt-5 "><h3 class="sppb-addon-title">Adatvédelmi tájékoztató</h3><div class="sppb-addon-content">Az <strong>GO EVENT! Hungary Korlátolt Felelősségű Társaság</strong> (székhely: 2030, Érd, Esztergályos utca 57., cégjegyzékszám: 13-09-185635, adószám: 14821503-2-13), (a továbbiakban: Szolgáltató, adatkezelő) alá veti magát a következő tájékoztatónak.
 <p>A természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről (általános adatvédelmi rendelet) AZ EURÓPAI PARLAMENT ÉS A TANÁCS (EU) 2016/679 RENDELETE (2016. április 27.) szerint az alábbi tájékoztatást adjuk.</p>
-<p>Jelen adatkezelési tájékoztató az alábbi weboldal és a rajta elérhető, az adatkezelő által működtetett Mesterséges Intelligencia szoftver (a továbbiakban: szoftver) adatkezelését szabályozza: www.miclub.hu.</p>
+<p>Jelen adatkezelési tájékoztató az alábbi weboldal és a rajta elérhető, az adatkezelő által működtetett Mesterséges Intelligencia szoftver (a továbbiakban: szoftver) adatkezelését szabályozza: www.goeventhungary.netlify.app</p>
 <p>Az adatkezelő és elérhetőségei:</p>
-<p>Név: <strong>M.I. Solution </strong> <strong>Korlátolt Felelősségű Társaság</strong></p>
-<p>Székhely: 2030, Érd, Esztergályos utca 57.</p>
-<p>E-mail: info@miclub.hu</p>
-<p>Telefon: 20/362-8289</p>
+<p>Név: <strong>GO EVENT! Hungary </strong> <strong>Korlátolt Felelősségű Társaság</strong></p>
+<p>Székhely: 9700, Szombathely, dolgozók útja 57.</p>
+<p>E-mail: goeventhungary@gmail.com</p>
+<p>Telefon: 30/715-9400</p>
 <p>Az adatvédelmi tisztviselő elérhetőségei:</p>
-<p>Név: Surányi Ferenc</p>
-<p>Székhely:&nbsp;2030, Érd, Esztergályos utca 57.</p>
-<p>E-mail: info@miclub.hu</p>
+<p>Név: Sipos Roland, Dernóczi Balázs , Csizmazia Ádám</p>
+<p>Székhely:&nbsp;9022, Győr, Bajcsy Zsilinszky út 20.</p>
+<p>E-mail: goeventhungary@gmail.com</p>
 <br clear="all">
 <p>Fogalom meghatározások</p>
 <p>1. „személyes adat”: azonosított vagy azonosítható természetes személyre („érintett”) vonatkozó bármely információ; azonosítható az a természetes személy, aki közvetlen vagy közvetett módon, különösen valamely azonosító, például név, szám, helymeghatározó adat, online azonosító vagy a természetes személy testi, fiziológiai, genetikai, szellemi, gazdasági, kulturális vagy szociális azonosságára vonatkozó egy vagy több tényező alapján azonosítható;</p>
@@ -112,7 +112,7 @@
 <p>&nbsp;</p>
 <p><em>2. </em> <em>Adatfeldolgozó megnevezése és elérhetősége: </em></p>
 <p>&nbsp;</p>
-<p><em>M.I. Solution Korlátolt Felelősségű Társaság</em></p>
+<p><em>GO EVENT! Hungary  Korlátolt Felelősségű Társaság</em></p>
 <p><em> (székhely: 2045 Törökbálint, Hosszúrét utca 1., cégjegyzékszám: 13-09-185635, adószám: 14821503-2-13), </em></p>
 <p>&nbsp;</p>
 <p><em>3. </em> <em>Az adatkezelés ténye, a</em> <em> kezelt adatok köre: A szolgáltatás használata során az érintett által megadott valamennyi személyes adat. </em></p>
@@ -146,7 +146,7 @@
 <p>· az érintettnek joga van az adathordozhatósághoz, továbbá a hozzájárulás bármely időpontban történő visszavonásához.</p>
 <p>5. <strong>A személyes adatokhoz </strong><strong>való hozzáférést</strong> <strong> , azok törlését, módosítását, vagy kezelésének korlátozását, az adatok hordozhatóságát, az adatkezelések elleni tiltakozást az alábbi módokon tudja érintett kezdeményezni </strong> :</p>
 <p>- postai úton a 2045 Törökbálint, Hosszúrét utca 1. címen,</p>
-<p>- e-mail útján az <a href="mailto:info@vhklub.hu">info@miclub.hu</a> e-mail címen,</p>
+<p>- e-mail útján az <a href="mailto:goeventhungary@gmail.com">goeventhungary@gmail.com</a> e-mail címen,</p>
 <p>- telefonon a 20/362-8289 számon.</p>
 <p>6. <strong>Az adatkezelés jogalapja</strong>:</p>
 <p>6.1.Az érintett hozzájárulása, 6. cikk (1) bekezdés a) és b) pontja, és a GDPR 22. cikk (2) bekezdés c) pontja.</p>
@@ -223,7 +223,7 @@
 <p>· az érintettnek joga van az adathordozhatósághoz, továbbá a hozzájárulás bármely időpontban történő visszavonásához.</p>
 <p>5. <strong>A személyes adatokhoz </strong><strong>való hozzáférést</strong> <strong> , azok törlését, módosítását, vagy kezelésének korlátozását, az adatok hordozhatóságát, az adatkezelések elleni tiltakozást az alábbi módokon tudja érintett kezdeményezni </strong> :</p>
 <p>- postai úton a 2045 Törökbálint, Hosszúrét utca 1. címen,</p>
-<p>- e-mail útján az <a href="mailto:info@vhklub.hu">info@miclub.hu</a> e-mail címen,</p>
+<p>- e-mail útján az <a href="mailto:goeventhungary@gmail.com">goeventhungary@gmail.com</a> e-mail címen,</p>
 <p>- telefonon a 20/362-8289 számon.</p>
 <p>6. <strong>Az adatkezelés jogalapja</strong>:</p>
 <p>6.1.Az érintett hozzájárulása, 6. cikk (1) bekezdés b) bekezdése,</p>
@@ -376,7 +376,7 @@
 <p>· az érintettnek joga van az adathordozhatósághoz, továbbá a hozzájárulás bármely időpontban történő visszavonásához.</p>
 <p>6. <strong>A személyes adatokhoz </strong><strong>való hozzáférést</strong> <strong> , azok törlését, módosítását, vagy kezelésének korlátozását, az adatok hordozhatóságát, az adatkezelések elleni tiltakozást az alábbi módokon tudja érintett kezdeményezni </strong> :</p>
 <p>- postai úton a 2045 Törökbálint, Hosszúrét utca 1. címen,</p>
-<p>- e-mail útján az <a href="mailto:info@vhklub.hu">info@miclub.hu</a> e-mail címen,</p>
+<p>- e-mail útján az <a href="mailto:goeventhungary@gmail.com">goeventhungary@gmail.com</a> e-mail címen,</p>
 <p>- telefonon a 20/362-8289 számon.</p>
 <p>7. <strong>Az adatkezelés jogalapja</strong>: az érintett hozzájárulása, 6. cikk (1) bekezdés c) pontja, és a fogyasztóvédelemről szóló 1997. évi CLV. törvény 17/A. § (7) bekezdése.</p>
 <p>8. Tájékoztatjuk, hogy</p>
@@ -485,86 +485,17 @@
 <p>- A Nemzeti Adatvédelmi és Információszabadság Hatóság ajánlása az előzetes tájékoztatás adatvédelmi követelményeiről</p>
 <p>- Az Európai Parlament és a Tanács (EU) 2016/679 rendelete (2016. április 27.) a természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről</p></div></div>
           </div>
+          <LoginWindow></LoginWindow>
           <footerbar></footerbar>
     </main>
 
 </template>
   
 <script>
-import axios from 'axios';
 import navigationmenu from '../components/navigationbar.vue';
+import LoginWindow from '../components/login_signup.vue';
 import footerbar from '../components/footerbar.vue';
 
-export default {
-  name: "UserDataPage",
-  props: {
-    isAdmin: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    citizenship: {
-      type: String,
-      required: true,
-    },
-    birthday: {
-      type: String,
-      required: true,
-    },
-    gender: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-    appliedEvents: {
-      type: Array,
-      required: true,
-    },
-  },
-  methods: {
-    cancelApplication(locationId, eventId) {
-      this.$emit("cancel-application", locationId, eventId);
-    },
-
-    deleteUser(id) {
-      axios.delete('/deleteUser/' + id)
-        .then(response => {
-          // Sikeres törlés esetén a felhasználói tömb frissítése
-          this.users = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        console.log(id)
-    },
-  },
-  data() {
-        return {
-            eventsbyId: [],
-            
-
-        };
-    },
-  mounted() {
-      axios.get("/userapplied/10")
-      .then(response => {
-        this.eventsbyId = response.data;
-        
-      })
-      .catch(error => {
-        console.log(error);
-      });
-},
-components:{navigationmenu,footerbar}
+export default {components:{navigationmenu,LoginWindow,footerbar}
 }
 </script>

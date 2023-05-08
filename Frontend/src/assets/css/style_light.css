@@ -536,12 +536,6 @@ div.navbar-buttons {
   border-bottom: 5px solid #000;
 }
 
-@media (min-width: 1030px) and (max-width: 1215px) {
-  #welcome-screen .carousel-content {
-    width: 45% !important;
-  }
-}
-
 #welcome-screen .carousel-content h2 {
   color: #fff;
   margin-bottom: 20px;
@@ -638,7 +632,7 @@ div.navbar-buttons {
 .countdown-text {
   color: #e8ff00;
   background: #00000080;
-  padding: 5px;
+  margin: -10px;
   border-radius: 12px;
 }
 
@@ -1636,4 +1630,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #121212;
   border-radius:20px
     
+}
+
+.appliedpercent{
+  color:red;
 }

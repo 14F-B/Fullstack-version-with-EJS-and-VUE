@@ -166,7 +166,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `password` varchar(65) NOT NULL,
-  `gender` varchar(10) NOT NULL,
+  `gender` varchar(15) NOT NULL,
   `permission` varchar(15) NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `gender`, `permission`, `birthdate`, `email`, `nationality`) VALUES
 (4, 'Fekete Klaudia', '$2b$10$GZAbb1MqmNu.kCCwqQq7HubJy7m4tQGIrM5KyX5fforAeyYWf7plK', 'Nő', 'user', '2007-04-15', 'feketeklaudia01@gmail.com', 'Magyar'),
-(11, 'GOEVENT! Hungary', '$2b$10$gN2iSQ5d0XHPn9UBiKajselpKIn1lThkrwqkc0S.E2y.j2Tqzv0M.', 'Férfi', 'admin', '2001-01-15', 'goeventhungary@gmail.com', 'Magyar'),
+(11, 'GOEVENT! Hungary', '$2b$10$tqM617ax.lZT/Ugvw5eNeeHvAWm29uqvLgV5FlVBTmkndLzuEex/K', 'Férfi', 'admin', '2001-01-15', 'goeventhungary@gmail.com', 'Magyar'),
 (22, 'Dernóczi Balázs', '$2b$10$zLcqIqm4xhYcYKX9mOmxj.tKzoNTkMNi1xd2/xJxH/jEOXQqmDf8K', 'Férfi', 'admin', '2001-06-18', 'dernoczi.balazs@students.jedlik.eu', 'Magyar'),
 (23, 'Kiss Maja', '$2b$10$lW7R818fPlt224FARmRaN..sc6iBtAlXoq1Z2AHlly5VHI7GbkM6y', 'Nő', 'user', '2005-12-09', 'kissmaja2005@gmail.com', 'Magyar'),
 (24, 'Ferenczy Kata', '$2b$10$LcJO97fU/I9kwX1bCDsCqeQfyfxzvaZtGODs4gcwV/EuWD1tahz3a', 'Nő', 'user', '2000-06-22', 'ferenczykata@smr.hu', 'Magyar'),

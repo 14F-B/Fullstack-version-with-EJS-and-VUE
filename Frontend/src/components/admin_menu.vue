@@ -1,19 +1,23 @@
 <template>
   <div class="mb-3">
-     <button class="btn btn-light m-1" @click="downloadPdf('tbl_events')">
+     <button class="btn btn-light m-1" @click="downloadPdf('tbl_events')" title="Események exportálása: ctrl+Y">
      <i class="bi bi-calendar-date-fill"></i> <i class="bi bi-filetype-pdf"></i>
      </button>
-     <button class="btn btn-light m-1" @click="downloadPdf('tbl_users')">
+     <button class="btn btn-light m-1" @click="downloadPdf('tbl_users')" title="Felhasználók exportálása: ctrl+M">
      <i class="bi bi-person"></i> <i class="bi bi-filetype-pdf"></i>
      </button>
-     <button id="btn_refresh" type="button" class="btn btn-light m-1" @click="refreshsite()">
+     <button id="btn_refresh" type="button" class="btn btn-light m-1" @click="refreshsite()" title="Frissítés: F5">
      <i class="bi bi-arrow-clockwise"></i>
      </button>
-     <button id="btn_changeTable" type="button" class="btn btn-light" @click="showcontent()">
+     <button id="btn_changeTable" type="button" class="btn btn-light" @click="showcontent()" title="Táblázat váltása: ctrl+B">
      Felhasználók listája
      </button>
      <label class="button btn btn-light m-1" for="modal-toggle">+Új esemény/admin</label>
-  </div>
+      <router-link to="/adminpage/scan">
+        <button type="button" class="btn btn-light" title="QR Kód olvasó">QR Kód olvasó</button>
+      </router-link>  
+</div>
+
   <div>
      <div class="rt-container">
         <div class="col-rt-12">
@@ -46,11 +50,11 @@
                           <div class="row">
                              <select class="form-control col d-flex m-2" id="eventCategory" name="eventCategory" v-model="eventCategory" required>
                               <option selected disabled>KATEGÓRIA</option>
-                             <option v-for="cat in category" :key="cat">{{ cat }}</option>
+                             <option v-for="cat in categoryList" :key="cat">{{ cat }}</option>
                              </select>
                              <select class="form-control col d-flex m-2" id="eventAgelimit" name="eventAgelimit" v-model="eventAgelimit" required>
                               <option selected disabled>KORHATÁR</option>
-                              <option v-for="age in agelimit" :key="age">{{ age }}</option>
+                              <option v-for="age in ageList" :key="age">{{ age }}</option>
                              </select>
                           </div>
                           <div class="row">
@@ -77,7 +81,7 @@
                           <input type="password" name="password" v-model="password" minlength="8" data-rule="minlen:8" data-msg="A jelszónak 8 karakternek kell lennie!" placeholder="Jelszó" required/>
                           <input type="password" name="password_match" v-model="password_match" minlength="8" data-rule="minlen:8" data-msg="A jelszónak 8 karakternek kell lennie!" placeholder="Jelszó mégegyszer" required/>
                           <select class="form-control" id="citizenship" name="citizenship" value="text" v-model="citizenship" required>
-                             <option selected disabled>Válassza ki az állampolgársága</option>
+                             <option selected disabled>Válassza ki az állampolgárságát</option>
                              <option v-for="nat in nationalityList" :key="nat">{{ nat }}</option>
                           </select>
                           <div style="text-align: left; color: white">
@@ -92,7 +96,7 @@
                              <div class="col-sm-6">
                                 <div style="text-align: left">
                                    <label class="lbl_date">Születési idő: </label>
-                                   <input type="date" name="birthday" v-model="birthday" class="form-control" id="date" placeholder="Születési idő"  required />
+                                   <input type="date" name="birthday" v-model="birthday" class="form-control" id="date" placeholder="Születési idő" min="1910-01-01"  :max="maxDate" required>
                                    <div class="validate"></div>
                                 </div>
                              </div>
@@ -115,24 +119,31 @@ import axios from "axios";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
+
 export default {
   data(){
     return{
-    citizenship: null,
+    // Inicializálás
+    citizenship: "Magyar",
     eventCategory: null,
     eventAgelimit: null,
 
 
-    nationalityList:['Magyar','Afganisztáni','Albán','Algériai','Amerikai','Amerikai Csendes-Óceáni-Szigeteki','Andorrai','Angolai','Anguillai','Antarktiszi','Antigua És Barbudai','Argentin','Arubai','Ausztrál','Azerbajdzsáni','Bahama-Szigeteki','Bahreini','Bangladesi','Barbadosi','Belgiumi','Belizei','Belorusz','Benini','Bermudai','Bhutáni','Bolgár','Bolíviai','Boszniai','Botswanai','Bouvet-Szigeti','Brazil','Brit','BritIndiai-ÓceániTerületi','BritVirgin-Szigeteki','BurkinaFasoi','Burmai','Burundi','CapeVerdei','Chilei','Ciprusi','CostaRicai','Csádi','Cseh','Dán','Dél-AfrikaiKöztársasági','Dél-Koreai','Dominikai','DominikaiKözösségi','Dubai','Dzsibuti','Eci','Ecuadori','EgyenlítoiGuineai','EgyesültArabEmirátusi','Egyiptomi','Elefántcsontparti','Eritreai','Észak-Koreai','Észt','Etiópiai','Falkland-Szigeteki','Faroe-Szigeteki','Fidzsi-Szigeteki','Finn','Francia','FranciaDéliTerületeki','FranciaGuyanai','FranciaPolinéziai','Fülöp-Szigeteki','Gaboni','Gambiai','Ghánai','Gibraltári','Görög','Grenadai','Grönlandi','Grúziai','Guatemalai','GuineaBissaui','Guineai','Guyanai','Haiti','Heart-Szigeti','Holland','HollandAntilláki','Hondurasi','HongKongi','Horvá','Indiai','Indonesiai','Ír','Iraki','Iráni','Ismeretlen','Izlandi','Izraeli','Jamaicai','Japán','Jemeni','Jordán','Jugoszláv','Kajmán-Szigeteki','Kambodzsai','Kameruni','Kanadai','Karácsony-Szigeti','Katari','Kazahsztáni','Kenyai','Kínai','Kirgíziai','Kiribati','Kókusz-Szigeteki','Kolumbiai','Komorosi','Kongói','Koszovói','Közép-AfrikaiKöztársasági','Kubai','Kuvaiti','Laoszi','Lengyel','Lesothoi','Lett','Libanoni','Libériai','Líbiai','Liechtensteini','Litván','Luxemburgi','Madagaszkári','Makaói','Makedóniai','Malawi','Malaysiai','Maldiv-Szigeteki','Mali','Máltai','Marokkói','Marschall-Szigeteki','Martiniquei','Mauritániai','Mauritiusi','Mayottei','Mexikói','Moldáviai','Monacoi','Mongól','Montenegroi','Mozambiki','Myanamari','Namibiai','Naraui','Német','Nepáli','Nicaraguai','Nigeri','Nigériai','Niuei','Norfolk-Szigeti','Norvég','Nyugat-Afrikai','Nyugat-Szaharai','Nyugat-Szamoai','Olasz','Omani','Orosz','Osztrák','OtherCountries','Örmény','Pakisztáni','Palaui','Panamai','PápuaÚj-Guineai','Paraguayi','Perui','Pitcairn-Szigeteki','Portugál','PuertoRicoi','Réunioni','Román','Ruandai','SaintLuciai','SaintVincenti','Salamon-Szigeteki','Salvadori','SanMarinoi','SaoToméi','Seychelle-Szigeteki','SierraLeonei','Spanyol','SríLankai','St-PierreÉsMiqueloni','Surinamei','Svájci','Svalbardi','Svéd','Szaud-Arábiai','Szenegáli','SzentIlonai','Szerb','Szingapúri','Szíriai','Szlovák','Szlovén','Szomáliai','Szudani','Szváziföldi','Tadzsikisztáni','Tajvani','Tanzániai','Thaiföldi','Togoi','Tokelau-Szigeteki','Tongai','Török','Trinidadi','Tunéziai','TurksÉsCaicos-Szigeteki','Tuvalui','Türkmenisztáni','Ugandai','Új-Kaledóniai','Új-Zélandi','Ukrán','Unoi','Uruguayi','Üzbegisztáni','Vanuatui','Vatikáni','Venezuelai','Vietnami','WallisÉsFutunai','Zairei','Zambiai','Zimbabwei'],
-    category:['Zene (koncert)','Film','Sport','Kultúra','Irodalom','Fesztivál,tematikus napok','Konferencia','Egyéb kategória'],
-    agelimit:['Korhatár nélküli','12+','16+','18+']
+    nationalityList:['Magyar','Afganisztáni','Albán','Algériai','Amerikai','Amerikai Csendes-Óceáni-Szigeteki','Andorrai','Angolai','Anguillai','Antarktiszi','AntiguaÉsBarbudai','Argentin','Arubai','Ausztrál','Azerbajdzsáni','Bahama-Szigeteki','Bahreini','Bangladesi','Barbadosi','Belgiumi','Belizei','Belorusz','Benini','Bermudai','Bhutáni','Bolgár','Bolíviai','Boszniai','Botswanai','Bouvet-Szigeti','Brazil','Brit','BritIndiai-ÓceániTerületi','BritVirgin-Szigeteki','BurkinaFasoi','Burmai','Burundi','CapeVerdei','Chilei','Ciprusi','CostaRicai','Csádi','Cseh','Dán','Dél-AfrikaiKöztársasági','Dél-Koreai','Dominikai','DominikaiKözösségi','Dubai','Dzsibuti','Eci','Ecuadori','EgyenlítoiGuineai','EgyesültArabEmirátusi','Egyiptomi','Elefántcsontparti','Eritreai','Észak-Koreai','Észt','Etiópiai','Falkland-Szigeteki','Faroe-Szigeteki','Fidzsi-Szigeteki','Finn','Francia','FranciaDéliTerületeki','FranciaGuyanai','FranciaPolinéziai','Fülöp-Szigeteki','Gaboni','Gambiai','Ghánai','Gibraltári','Görög','Grenadai','Grönlandi','Grúziai','Guatemalai','GuineaBissaui','Guineai','Guyanai','Haiti','Heart-Szigeti','Holland','HollandAntilláki','Hondurasi','HongKongi','Horvá','Indiai','Indonesiai','Ír','Iraki','Iráni','Ismeretlen','Izlandi','Izraeli','Jamaicai','Japán','Jemeni','Jordán','Jugoszláv','Kajmán-Szigeteki','Kambodzsai','Kameruni','Kanadai','Karácsony-Szigeti','Katari','Kazahsztáni','Kenyai','Kínai','Kirgíziai','Kiribati','Kókusz-Szigeteki','Kolumbiai','Komorosi','Kongói','Koszovói','Közép-AfrikaiKöztársasági','Kubai','Kuvaiti','Laoszi','Lengyel','Lesothoi','Lett','Libanoni','Libériai','Líbiai','Liechtensteini','Litván','Luxemburgi','Madagaszkári','Makaói','Makedóniai','Malawi','Malaysiai','Maldiv-Szigeteki','Mali','Máltai','Marokkói','Marschall-Szigeteki','Martiniquei','Mauritániai','Mauritiusi','Mayottei','Mexikói','Moldáviai','Monacoi','Mongól','Montenegroi','Mozambiki','Myanamari','Namibiai','Naraui','Német','Nepáli','Nicaraguai','Nigeri','Nigériai','Niuei','Norfolk-Szigeti','Norvég','Nyugat-Afrikai','Nyugat-Szaharai','Nyugat-Szamoai','Olasz','Omani','Orosz','Osztrák','OtherCountries','Örmény','Pakisztáni','Palaui','Panamai','PápuaÚj-Guineai','Paraguayi','Perui','Pitcairn-Szigeteki','Portugál','PuertoRicoi','Réunioni','Román','Ruandai','SaintLuciai','SaintVincenti','Salamon-Szigeteki','Salvadori','SanMarinoi','SaoToméi','Seychelle-Szigeteki','SierraLeonei','Spanyol','SríLankai','St-PierreÉsMiqueloni','Surinamei','Svájci','Svalbardi','Svéd','Szaud-Arábiai','Szenegáli','SzentIlonai','Szerb','Szingapúri','Szíriai','Szlovák','Szlovén','Szomáliai','Szudani','Szváziföldi','Tadzsikisztáni','Tajvani','Tanzániai','Thaiföldi','Togoi','Tokelau-Szigeteki','Tongai','Török','Trinidadi','Tunéziai','TurksÉsCaicos-Szigeteki','Tuvalui','Türkmenisztáni','Ugandai','Új-Kaledóniai','Új-Zélandi','Ukrán','Unoi','Uruguayi','Üzbegisztáni','Vanuatui','Vatikáni','Venezuelai','Vietnami','WallisÉsFutunai','Zairei','Zambiai','Zimbabwei'],
+    categoryList:['Zene (koncert)','Film','Sport','Kultúra','Irodalom','Fesztivál,tematikus napok','Konferencia','Egyéb kategória'],
+    ageList:['Korhatár nélküli','12+','16+','18+'],
+
+    // 16 Évnél idősebb regisztrálhat
+    maxDate: new Date(new Date().getFullYear() - 16, new Date().getMonth(), new Date().getDate()).toISOString().substr(0, 10)
+
     };
   },
 
   created() {
+    // Alapértelmezett <option> mezők beállítása
     this.citizenship = this.nationalityList[0];
-    this.eventCategory = this.category[0];
-    this.eventAgelimit = this.agelimit[0];
+    this.eventCategory = this.categoryList[0];
+    this.eventAgelimit = this.ageList[0];
 
   },
 
@@ -179,45 +190,72 @@ export default {
       }
       location.reload();
     },
+
+    // Tartalom blokk váltása
     showcontent() {
       var eventsShow = document.getElementById('eventTable');
       var usersShow = document.getElementById('usersTable');
+
+      // Tartalom elrejtése / Megjelenítése
       if (eventsShow.style.display === 'none') {
         eventsShow.style.display = 'block';
         usersShow.style.display ='none';
       } else {
         eventsShow.style.display = 'none';
         usersShow.style.display ='block';
-      
       }
+      // Gomb szövegének megváltoztatása
       var button = document.getElementById("btn_changeTable");
       if (button.textContent === "Események listája") {
         button.textContent = "Felhasználók listája";
-      } 
+      }
       else {
         button.textContent = "Események listája";
       }
     },
-
+    // Exportálás billentyűkombinációkkal
+    handleKeyDown(event) {
+        if (event.ctrlKey && event.key === 'y') {
+          this.downloadPdf('tbl_events');
+        } else if (event.ctrlKey && event.key === 'm') {
+          this.downloadPdf('tbl_users');
+      } else if (event.ctrlKey && event.key === 'b') {
+          this.showcontent();
+        }
+      },
     refreshsite() {
+      // Frissítés ikonra kattintás után, weboldal újratöltés
       const refreshButton = document.getElementById("btn_refresh");
-
       refreshButton.addEventListener("click", function () {
         window.location.reload(true);
       });
     },
     downloadPdf(tableName) {
+      // Fekvő tájolás
       const doc = new jsPDF('landscape');
       const tableId = `#${tableName}`;
       doc.autoTable({ html: tableId ,});
+
+      // Fájl neve: Táblanév_ÉÉÉÉ_HH_NN.pdf
       const currentDate = new Date();
       const year = currentDate.getFullYear();
       const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
       const day = currentDate.getDate().toString().padStart(2, '0');
       const fileName = `${tableName}_${year}_${month}_${day}.pdf`;
+
+      // Mentés
       doc.save(fileName);
+    },
+
+    beforeDestroy() {
+    document.removeEventListener('keydown', this.handleKeyDown);
     }
   },
+
+  
+   mounted() {
+     document.addEventListener('keydown', this.handleKeyDown);
+   },
 
 
 };

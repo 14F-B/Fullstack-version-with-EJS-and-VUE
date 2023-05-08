@@ -14,7 +14,7 @@ export default defineConfig({
   devServer: {
     host: '127.0.0.1',
     port: 5173, 
-    https: true,
+    https: false,
     hotOnly: false,
   },
 });

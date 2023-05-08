@@ -13,6 +13,7 @@
             <label for="tab-addevent" class="table d-none"></label>
                 <div  class=" tabs-content">
                     <span>Új jelszó beállítása</span>
+                       <div ref="errorDiv"></div>
                         <form @submit.prevent="refreshpassword">
                           <input type="password" v-model="password_old" placeholder="Add meg a jelenlegi jelszót!" required>
                           <input type="password" v-model="password_new" placeholder="Add meg az új jelszót!" required>
@@ -29,40 +30,64 @@
 </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 import { mapGetters } from 'vuex';
 
 export default {
-    data() {
-  return {
-    id:'',
-    password_old:'',
-    password_new: '',
-    password_new_match:'',
-  }
-},
-
+  data() {
+    return {
+      id: '',
+      password_old: '',
+      password_new: '',
+      password_new_match: '',
+      errorDiv: null
+    }
+  },
   methods: {
-    async refreshpassword() {
-      try {
-        const response = await axios.put('/refreshPassword', {
-          id:this.getID,
+    refreshpassword() {
+      return new Promise((resolve, reject) => {
+        axios.put('/refreshPassword', {
+          id: this.getID,
           password_old: this.password_old,
           password_new: this.password_new,
           password_new_match: this.password_new_match
+        })
+       .then(response => {
+          console.log(response.data);
+          this.responseData = response.data;
+          // Sikeres válasz esetén kiírjuk a sikeres üzenetet a nextTick használatával
+          this.$nextTick(() => {
+            // Az osztályok törlése az errorDiv elemről
+            this.errorDiv.classList.remove('border-danger', 'border-info','text-danger','text-info');
+            this.errorDiv.innerHTML = '<i class="bi bi-check-circle-fill"></i>'+response.data.message;
+            this.errorDiv.classList.add('border', 'border-info', 'text-info', 'p-2', 'col-8', 'text-start');
+          });
+          resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          // Sikertelen válasz esetén kiírjuk a sikertelen üzenetet a nextTick használatával
+          this.$nextTick(() => {
+            // Az osztályok törlése az errorDiv elemről
+            this.errorDiv.classList.remove('border-info', 'border-info','text-danger','text-info');
+            this.errorDiv.innerHTML = '<i class="bi bi-exclamation-octagon-fill"></i>' + '  '+error.response.data.message;
+            this.errorDiv.classList.add('border', 'border-danger', 'text-danger', 'p-2', 'col-8', 'text-start');
+          });
+          reject(error);
         });
-        console.log(response.data);
-        location.reload();
-
-      } catch (error) {
-        console.error(error);
-      }
-    },
+      });
+    }
   },
   computed: {
     ...mapGetters([
       'getID',
-    ])},
+    ])
+  },
+  mounted() {
+    // Az errorDiv referenciájának beállítása a mounted (életciklus) metódusban
+    this.errorDiv = this.$refs.errorDiv;
+  }
 }
 </script>

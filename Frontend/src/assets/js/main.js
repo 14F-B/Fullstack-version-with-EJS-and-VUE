@@ -158,11 +158,15 @@
   /**
    * Preloader
    */
-  let preloader = select('#preloader');
+  let preloader = document.querySelector('#preloader');
   if (preloader) {
+    preloader.style.display = 'block';
     window.addEventListener('load', () => {
-      preloader.remove()
+      preloader.style.display = 'none';
     });
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 5000);
   }
 
   /**

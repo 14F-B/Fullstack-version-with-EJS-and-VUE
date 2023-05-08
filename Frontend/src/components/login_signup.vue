@@ -3,7 +3,7 @@
      <div class="rt-container">
         <div class="col-rt-12">
            <div class="Scriptcontent">
-              <input id="modal-toggle" type="checkbox">
+              <input id="modal-toggle" type="checkbox"  v-model="checked">
               <label class="modal-backdrop" for="modal-toggle"></label>
               <div class="modal-content">
                  <label class="modal-close-btn" for="modal-toggle">
@@ -37,6 +37,7 @@
                     <input class="radio" id="tab-signup" name="tabs-name" type="radio">
                     <label for="tab-signup" class="table"><span>Regisztráció</span></label>
                     <div class="tabs-content">
+                       <div ref="errorDiv"></div>
                        <form @submit.prevent="signup">
                           <input type="text" name="name" v-model="name" placeholder="Név" required>
                           <input type="email" name="email" v-model="email" placeholder="Email cím" required>
@@ -58,7 +59,7 @@
                              <div class="col-sm-6">
                                 <div style="text-align: left;">
                                    <label class="lbl_date">Születési idő: </label>
-                                   <input type="date" name="birthday" v-model="birthday" class="form-control" id="date" placeholder="Születési idő" min="1910-01-01" max="2015-01-01" required>
+                                   <input type="date" name="birthday" v-model="birthday" class="form-control" id="date" placeholder="Születési idő" min="1910-01-01"  :max="maxDate" required>
                                    <div class="validate"></div>
                                 </div>
                              </div>
@@ -83,12 +84,23 @@ export default {
     return {
       email: '',
       password: '',
-      nationality:['Magyar','Afganisztáni','Albán','Algériai','Amerikai','Amerikai Csendes-Óceáni-Szigeteki','Andorrai','Angolai','Anguillai','Antarktiszi','Antigua És Barbudai','Argentin','Arubai','Ausztrál','Azerbajdzsáni','Bahama-Szigeteki','Bahreini','Bangladesi','Barbadosi','Belgiumi','Belizei','Belorusz','Benini','Bermudai','Bhutáni','Bolgár','Bolíviai','Boszniai','Botswanai','Bouvet-Szigeti','Brazil','Brit','BritIndiai-ÓceániTerületi','BritVirgin-Szigeteki','BurkinaFasoi','Burmai','Burundi','CapeVerdei','Chilei','Ciprusi','CostaRicai','Csádi','Cseh','Dán','Dél-AfrikaiKöztársasági','Dél-Koreai','Dominikai','DominikaiKözösségi','Dubai','Dzsibuti','Eci','Ecuadori','EgyenlítoiGuineai','EgyesültArabEmirátusi','Egyiptomi','Elefántcsontparti','Eritreai','Észak-Koreai','Észt','Etiópiai','Falkland-Szigeteki','Faroe-Szigeteki','Fidzsi-Szigeteki','Finn','Francia','FranciaDéliTerületeki','FranciaGuyanai','FranciaPolinéziai','Fülöp-Szigeteki','Gaboni','Gambiai','Ghánai','Gibraltári','Görög','Grenadai','Grönlandi','Grúziai','Guatemalai','GuineaBissaui','Guineai','Guyanai','Haiti','Heart-Szigeti','Holland','HollandAntilláki','Hondurasi','HongKongi','Horvá','Indiai','Indonesiai','Ír','Iraki','Iráni','Ismeretlen','Izlandi','Izraeli','Jamaicai','Japán','Jemeni','Jordán','Jugoszláv','Kajmán-Szigeteki','Kambodzsai','Kameruni','Kanadai','Karácsony-Szigeti','Katari','Kazahsztáni','Kenyai','Kínai','Kirgíziai','Kiribati','Kókusz-Szigeteki','Kolumbiai','Komorosi','Kongói','Koszovói','Közép-AfrikaiKöztársasági','Kubai','Kuvaiti','Laoszi','Lengyel','Lesothoi','Lett','Libanoni','Libériai','Líbiai','Liechtensteini','Litván','Luxemburgi','Madagaszkári','Makaói','Makedóniai','Malawi','Malaysiai','Maldiv-Szigeteki','Mali','Máltai','Marokkói','Marschall-Szigeteki','Martiniquei','Mauritániai','Mauritiusi','Mayottei','Mexikói','Moldáviai','Monacoi','Mongól','Montenegroi','Mozambiki','Myanamari','Namibiai','Naraui','Német','Nepáli','Nicaraguai','Nigeri','Nigériai','Niuei','Norfolk-Szigeti','Norvég','Nyugat-Afrikai','Nyugat-Szaharai','Nyugat-Szamoai','Olasz','Omani','Orosz','Osztrák','OtherCountries','Örmény','Pakisztáni','Palaui','Panamai','PápuaÚj-Guineai','Paraguayi','Perui','Pitcairn-Szigeteki','Portugál','PuertoRicoi','Réunioni','Román','Ruandai','SaintLuciai','SaintVincenti','Salamon-Szigeteki','Salvadori','SanMarinoi','SaoToméi','Seychelle-Szigeteki','SierraLeonei','Spanyol','SríLankai','St-PierreÉsMiqueloni','Surinamei','Svájci','Svalbardi','Svéd','Szaud-Arábiai','Szenegáli','SzentIlonai','Szerb','Szingapúri','Szíriai','Szlovák','Szlovén','Szomáliai','Szudani','Szváziföldi','Tadzsikisztáni','Tajvani','Tanzániai','Thaiföldi','Togoi','Tokelau-Szigeteki','Tongai','Török','Trinidadi','Tunéziai','TurksÉsCaicos-Szigeteki','Tuvalui','Türkmenisztáni','Ugandai','Új-Kaledóniai','Új-Zélandi','Ukrán','Unoi','Uruguayi','Üzbegisztáni','Vanuatui','Vatikáni','Venezuelai','Vietnami','WallisÉsFutunai','Zairei','Zambiai','Zimbabwei',]
-    
+      citizenship: "Magyar",
+      nationality:['Magyar','Afganisztáni','Albán','Algériai','Amerikai','Amerikai Csendes-Óceáni-Szigeteki','Andorrai','Angolai','Anguillai','Antarktiszi','AntiguaÉsBarbudai','Argentin','Arubai','Ausztrál','Azerbajdzsáni','Bahama-Szigeteki','Bahreini','Bangladesi','Barbadosi','Belgiumi','Belizei','Belorusz','Benini','Bermudai','Bhutáni','Bolgár','Bolíviai','Boszniai','Botswanai','Bouvet-Szigeti','Brazil','Brit','BritIndiai-ÓceániTerületi','BritVirgin-Szigeteki','BurkinaFasoi','Burmai','Burundi','CapeVerdei','Chilei','Ciprusi','CostaRicai','Csádi','Cseh','Dán','Dél-AfrikaiKöztársasági','Dél-Koreai','Dominikai','DominikaiKözösségi','Dubai','Dzsibuti','Eci','Ecuadori','EgyenlítoiGuineai','EgyesültArabEmirátusi','Egyiptomi','Elefántcsontparti','Eritreai','Észak-Koreai','Észt','Etiópiai','Falkland-Szigeteki','Faroe-Szigeteki','Fidzsi-Szigeteki','Finn','Francia','FranciaDéliTerületeki','FranciaGuyanai','FranciaPolinéziai','Fülöp-Szigeteki','Gaboni','Gambiai','Ghánai','Gibraltári','Görög','Grenadai','Grönlandi','Grúziai','Guatemalai','GuineaBissaui','Guineai','Guyanai','Haiti','Heart-Szigeti','Holland','HollandAntilláki','Hondurasi','HongKongi','Horvá','Indiai','Indonesiai','Ír','Iraki','Iráni','Ismeretlen','Izlandi','Izraeli','Jamaicai','Japán','Jemeni','Jordán','Jugoszláv','Kajmán-Szigeteki','Kambodzsai','Kameruni','Kanadai','Karácsony-Szigeti','Katari','Kazahsztáni','Kenyai','Kínai','Kirgíziai','Kiribati','Kókusz-Szigeteki','Kolumbiai','Komorosi','Kongói','Koszovói','Közép-AfrikaiKöztársasági','Kubai','Kuvaiti','Laoszi','Lengyel','Lesothoi','Lett','Libanoni','Libériai','Líbiai','Liechtensteini','Litván','Luxemburgi','Madagaszkári','Makaói','Makedóniai','Malawi','Malaysiai','Maldiv-Szigeteki','Mali','Máltai','Marokkói','Marschall-Szigeteki','Martiniquei','Mauritániai','Mauritiusi','Mayottei','Mexikói','Moldáviai','Monacoi','Mongól','Montenegroi','Mozambiki','Myanamari','Namibiai','Naraui','Német','Nepáli','Nicaraguai','Nigeri','Nigériai','Niuei','Norfolk-Szigeti','Norvég','Nyugat-Afrikai','Nyugat-Szaharai','Nyugat-Szamoai','Olasz','Omani','Orosz','Osztrák','OtherCountries','Örmény','Pakisztáni','Palaui','Panamai','PápuaÚj-Guineai','Paraguayi','Perui','Pitcairn-Szigeteki','Portugál','PuertoRicoi','Réunioni','Román','Ruandai','SaintLuciai','SaintVincenti','Salamon-Szigeteki','Salvadori','SanMarinoi','SaoToméi','Seychelle-Szigeteki','SierraLeonei','Spanyol','SríLankai','St-PierreÉsMiqueloni','Surinamei','Svájci','Svalbardi','Svéd','Szaud-Arábiai','Szenegáli','SzentIlonai','Szerb','Szingapúri','Szíriai','Szlovák','Szlovén','Szomáliai','Szudani','Szváziföldi','Tadzsikisztáni','Tajvani','Tanzániai','Thaiföldi','Togoi','Tokelau-Szigeteki','Tongai','Török','Trinidadi','Tunéziai','TurksÉsCaicos-Szigeteki','Tuvalui','Türkmenisztáni','Ugandai','Új-Kaledóniai','Új-Zélandi','Ukrán','Unoi','Uruguayi','Üzbegisztáni','Vanuatui','Vatikáni','Venezuelai','Vietnami','WallisÉsFutunai','Zairei','Zambiai','Zimbabwei',],
+     
+     // CTRL+ L Billentyűkombinációval pop-up ablak megjelenítése/elrejtése
+      checked: false,
+      lastCtrlLTime: null,
+      // Tájékoztató szöveg
+      errorDiv: null,
+      // 6 Évnél idősebb regisztrálhat
+      maxDate: new Date(new Date().getFullYear() - 6, new Date().getMonth(), new Date().getDate()).toISOString().substr(0, 10)
+
+
+
     };
   },
   methods: {
-async login() {
+    async login() {
   try {
     await this.$store.dispatch('login', {
       email: this.email,
@@ -101,27 +113,38 @@ async login() {
     });
   } catch (error) {
     console.error(error);
-   
   }
 },
     async signup() {
-      try {
-        const response = await axios.post('/signup', {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          password_match: this.password_match,
-          citizenship: this.citizenship,
-          gender: this.gender,
-          birthday: this.birthday
-        });
-        console.log(response.data);
-
-      } catch (error) {
-        console.error(error);
-        
-      }
-    },
+try {
+const response = await axios.post('/signup', {
+name: this.name,
+email: this.email,
+password: this.password,
+password_match: this.password_match,
+citizenship: this.citizenship,
+gender: this.gender,
+birthday: this.birthday
+});
+console.log(response.data);
+// Sikeres válasz esetén
+this.$nextTick(() => {
+  // Az osztályok törlése az errorDiv elemről
+  this.errorDiv.classList.remove('border-danger', 'border-info', 'text-danger', 'text-info');
+  this.errorDiv.innerHTML = '<i class="bi bi-check-circle-fill"></i>'+ '  '  + response.data.message;
+  this.errorDiv.classList.add('border', 'border-info', 'text-info', 'p-2', 'col-8', 'text-start');
+});
+} catch (error) {
+console.error(error);
+// Sikertelen válasz esetén
+this.$nextTick(() => {
+  // Az osztályok törlése az errorDiv elemről
+  this.errorDiv.classList.remove('border-info', 'border-info', 'text-danger', 'text-info');
+  this.errorDiv.innerHTML = '<i class="bi bi-exclamation-octagon-fill"></i>' + '  ' + error.response.data.message;
+  this.errorDiv.classList.add('border', 'border-danger', 'text-danger', 'p-2', 'col-8', 'text-start');
+});
+}
+},
 
     async forgotpassword() {
       try {
@@ -134,11 +157,40 @@ async login() {
         console.error(error);
       }
     },
-  },
+    
 
+      handleKeyDown(event) {
+      if (event.ctrlKey && event.key === 'l') {
+        event.preventDefault();
+
+        // Ha az előző "Ctrl + L" billentyűzetes eseménytől eltérő időn belül történik a jelenlegi esemény
+        const now = Date.now();
+        if (!this.lastCtrlLTime || now - this.lastCtrlLTime > 500) {
+          this.checked = !this.checked;
+          this.lastCtrlLTime = now;
+        } else {
+          this.checked = false;
+          this.lastCtrlLTime = null;
+        }
+      }
+    }
+  
+  },
+  
   
   mounted() {
-    this.citizenship = this.nationality[0];
+    this.citizenship =  "Magyar";
+      document.addEventListener('keydown', this.handleKeyDown);
+      // Az errorDiv referenciájának beállítása a mounted (életciklus) metódusban
+       this.errorDiv = this.$refs.errorDiv;
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 };
 </script>
+
+<style scoped>
+
+
+</style>

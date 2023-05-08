@@ -65,7 +65,7 @@ import axios from 'axios';
 
 export default {
   methods:{
-  sendForm() {
+  async sendForm() {
       const payload = {
         senderName: this.senderName,
         senderEmail: this.senderEmail,
@@ -73,7 +73,7 @@ export default {
         message: this.message,
       };
 
-      axios.post("/sendForm", payload)
+      await axios.post("/sendForm", payload)
         .then(() => {
           // console.log(payload)
         })

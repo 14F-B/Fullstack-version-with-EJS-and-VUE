@@ -6,7 +6,7 @@
       <h1 class="text-center mt-2">az oldalnak a megnyitásához</h1>
       <p class="text-center ">A weboldal hamarosan átirányítja az Ön felhasználói szintjének megfelelő oldalra! </p>
       <div class="text-center">
-        <button class="btn btn-info text-center"><a class="text-black text-center" href="/userpage">Profil megtekintése</a></button>
+        <button class="btn btn-info text-center"><a class="text-dark text-center" href="/userpage">Profil megtekintése</a></button>
       </div>
     </div>
   </section>
